@@ -3,9 +3,10 @@
 @theme {
   --breakpoint-lg: 991px;
   --dropbox-size: calc(-2px + min(800px, -64px + min(100vw, 100vh)));
+  --dropbox-animate-size: min(500px, -64px + min(100vw, 100vh));
   --dropbox-color: #0061fe;
   --dropbox-btn-size: 90px;
-  --dropbox-left: calc(var(--dropbox-btn-size) / 6);
+  --dropbox-left: calc(var(--dropbox-btn-size) / -6);
   --dropbox-bottom: 50%;
   --dropbox-transform: translate(calc(50vw - var(--dropbox-btn-size) / 3), 50%);
 }
