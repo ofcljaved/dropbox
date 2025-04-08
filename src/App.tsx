@@ -1,6 +1,7 @@
-import { useScroll, motion, useMotionValueEvent, useMotionValue, animate, useTransform } from "motion/react"
+import { useScroll, motion, useMotionValueEvent, useMotionValue, animate } from "motion/react"
 import { useEffect, useState } from "react";
 import { useLoading } from "./context/loadingContext";
+import DropBoxSvg from "./components/DropBoxSvg";
 
 function App() {
   const { scrollY } = useScroll();
@@ -56,7 +57,7 @@ function App() {
             }}
             animate={scrollDirection}
             transition={{ duration: 0.6, ease: [0.5, 0, 0.2, 1] }}
-            className="border size-(--dropbox-size) text-(--dropbox-color) flex-none bg-(--dropbox-bg)"
+            className="relative border size-(--dropbox-size) text-(--dropbox-color) flex-none bg-(--dropbox-bg)"
           >
             <div
               style={{ width: "min(500px, min(100vw, 100vh) - 64px)" }}
@@ -93,6 +94,7 @@ function App() {
                   From icons to illustration, logos to language, this collection is the foundation for how Dropbox looks, feels, and sounds like Dropbox.
                 </motion.h3>
               </motion.div>
+              <DropBoxSvg />
             </div>
           </motion.div>
         </div>
