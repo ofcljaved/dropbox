@@ -2,6 +2,7 @@ import { useScroll, motion, useMotionValueEvent, useMotionValue, animate } from 
 import { useEffect, useState } from "react";
 import { useLoading } from "./context/loadingContext";
 import DropBoxSvg from "./components/DropBoxSvg";
+import ScrollChevron from "./components/ScrollChevron";
 
 function App() {
   const { scrollY } = useScroll();
@@ -94,6 +95,7 @@ function App() {
                   From icons to illustration, logos to language, this collection is the foundation for how Dropbox looks, feels, and sounds like Dropbox.
                 </motion.h3>
               </motion.div>
+              <ScrollChevron />
               <DropBoxSvg />
             </div>
           </motion.div>
