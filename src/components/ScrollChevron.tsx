@@ -1,6 +1,5 @@
 import { motion, SVGMotionProps } from "motion/react";
 import { useEffect, useState } from "react";
-import { useLoading } from "../context/loadingContext";
 
 export default function ScrollChevron() {
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -32,7 +31,8 @@ export default function ScrollChevron() {
           duration: 1.5,
           ease: [0.2, 0, 0.3, 1],
           repeat: Infinity,
-          repeatDelay: 0.5
+          repeatDelay: 0.5,
+          delay: 2
         }}
       />
       <Chevron
@@ -41,7 +41,8 @@ export default function ScrollChevron() {
           duration: 1.5,
           ease: [0.4, 0, 0.3, 1],
           repeat: Infinity,
-          repeatDelay: 0.5
+          repeatDelay: 0.5,
+          delay: 2
         }}
       />
     </motion.div>
@@ -50,22 +51,19 @@ export default function ScrollChevron() {
 
 interface ChevronProps extends SVGMotionProps<SVGSVGElement> { }
 
-const Chevron = ({ className, ...props }: ChevronProps) => {
-  const { loading } = useLoading();
-  const variants = {
-    stop: {
-      opacity: 0,
-      transform: "translatey(0px)"
-    },
-    start: {
-      opacity: [1, 0.75, 1],
-      transform: ["translatey(0px)", "translatey(18px)", "translatey(0px)"]
-    }
-  };
+const Chevron = ({ className, transition, ...props }: ChevronProps) => {
   return (
     <motion.svg
-      variants={variants}
-      animate={loading ? "stop" : "start"}
+      initial={{ fillOpacity: 0 }}
+      animate={{
+        fillOpacity: 1,
+        opacity: [1, 0.6, 1],
+        transform: ["translatey(0px)", "translatey(18px)", "translatey(0px)"]
+      }}
+      transition={{
+        default: transition,
+        fillOpacity: { duration: 1.5, ease: [0.4, 0, 0.2, 1], delay: 1.5 },
+      }}
       className={`w-[52px] right-[14px] absolute ${className}`} width="26" height="14" viewBox="0 0 26 14" fill="currentColor"
       {...props}
     >

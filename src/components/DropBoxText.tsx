@@ -1,0 +1,42 @@
+import { motion } from "motion/react"
+
+export function DropBoxText({ scrollDirection }: { scrollDirection: string }) {
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5, ease: [0.5, 0, 0.05, 1], delay: 1.5 }}
+      className="relative flex-1 self-stretch"
+    >
+      <motion.h3
+        initial={textVariants.visible}
+        variants={{
+          up: textVariants.visible,
+          down: textVariants.hidden
+        }}
+        animate={scrollDirection}
+        transition={{ duration: 0.2, ease: [0.2, 0.5, 0.5, 1], delay: 0.1 }}
+        className="text-4xl absolute inset-[0%_0%_auto]"
+      >
+        At Dropbox, our Brand Guidelines help us infuse everything we make with identity.
+      </motion.h3>
+      <motion.h3
+        initial={textVariants.hidden}
+        variants={{
+          up: textVariants.hidden,
+          down: textVariants.visible
+        }}
+        animate={scrollDirection}
+        transition={{ duration: 0.2, ease: [0.2, 0.5, 0.5, 1], delay: 0.1 }}
+        className="text-4xl absolute inset-[0%_0%_auto]"
+      >
+        From icons to illustration, logos to language, this collection is the foundation for how Dropbox looks, feels, and sounds like Dropbox.
+      </motion.h3>
+    </motion.div>
+  )
+}
