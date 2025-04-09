@@ -1,6 +1,17 @@
-import { motion } from "motion/react"
+import { motion, useMotionValueEvent, useScroll } from "motion/react"
+import { useLoading } from "../context/loadingContext";
+import { useState } from "react";
 
 export function DropBoxText({ scrollDirection }: { scrollDirection: string }) {
+  const { scrollYProgress } = useScroll();
+  const [hideText, setHideText] = useState(false);
+  const { loading } = useLoading();
+
+  useMotionValueEvent(scrollYProgress, "change", (curr) => {
+    if (loading) return;
+    setHideText(curr > 0.5);
+  });
+
   const textVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
@@ -8,9 +19,14 @@ export function DropBoxText({ scrollDirection }: { scrollDirection: string }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, ease: [0.5, 0, 0.05, 1], delay: 1.5 }}
+      variants={textVariants}
+      initial={textVariants.hidden}
+      animate={hideText ? "hidden" : "visible"}
+      transition={
+        loading ?
+          { duration: 1.5, ease: [0.5, 0, 0.05, 1], delay: 1.5 }
+          : { duration: 0.2, ease: [0.2, 0.5, 0.5, 1] }
+      }
       className="relative flex-1 self-stretch"
     >
       <motion.h3
