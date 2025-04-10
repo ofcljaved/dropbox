@@ -9,9 +9,6 @@ interface LinkProps extends HTMLMotionProps<"a"> {
 export function Link({ title, children, className, ...props }: LinkProps) {
   const variant = {
     initial: {
-      backgroundColor: "#283750",
-      color: "#b4c8e1",
-      fill: "#b4c8e1",
       "--opacity": 1,
     },
     hover: {
@@ -36,7 +33,7 @@ export function Link({ title, children, className, ...props }: LinkProps) {
         style={{
           fontSize: "min(2.75vw - 6px, 1.375vw + 15px)",
         }}
-        className="relative top-0 left-0 font-medium"
+        className="relative top-0 left-0 font-medium leading-[0.8em]"
       >
         {title}
       </div>
