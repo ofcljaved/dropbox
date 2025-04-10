@@ -7,19 +7,23 @@ interface LinkProps extends HTMLMotionProps<"a"> {
 }
 
 export function Link({ title, children, className, ...props }: LinkProps) {
+
   const variant = {
     initial: {
       "--opacity": 1,
       "--second-fill": "#be4b0a",
+      "--accent-pink": "#cd2f7b",
     },
     hover: {
       backgroundColor: "#1a1918",
       color: "#ffffff",
       fill: "#1a1918",
       "--second-fill": "#1a1918",
+      "--accent-pink": "#1a1918",
       "--opacity": 0,
     },
   }
+
   return (
     <motion.a
       initial={"initial"}

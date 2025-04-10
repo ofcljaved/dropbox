@@ -1,5 +1,6 @@
 import { Color } from "./Color";
 import { Iconography } from "./Iconography";
+import { Imagery } from "./Imagery";
 import { Logo } from "./Logo";
 import { Strategy } from "./Strategy";
 import { Typography } from "./Typography";
@@ -14,6 +15,7 @@ export function NavContent() {
       <Typography />
       <Iconography />
       <Color />
+      <Imagery />
     </nav>
   )
 }
