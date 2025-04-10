@@ -10,11 +10,13 @@ export function Link({ title, children, className, ...props }: LinkProps) {
   const variant = {
     initial: {
       "--opacity": 1,
+      "--second-fill": "#be4b0a",
     },
     hover: {
       backgroundColor: "#1a1918",
       color: "#ffffff",
       fill: "#1a1918",
+      "--second-fill": "#1a1918",
       "--opacity": 0,
     },
   }

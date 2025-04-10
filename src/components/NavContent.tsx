@@ -1,3 +1,5 @@
+import { Color } from "./Color";
+import { Iconography } from "./Iconography";
 import { Logo } from "./Logo";
 import { Strategy } from "./Strategy";
 import { Typography } from "./Typography";
@@ -10,6 +12,8 @@ export function NavContent() {
       <VoiceTone />
       <Logo />
       <Typography />
+      <Iconography />
+      <Color />
     </nav>
   )
 }

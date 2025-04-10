@@ -30,9 +30,9 @@ export function Typography() {
   )
 }
 
-interface VoiceToneSvgProps extends SVGMotionProps<SVGSVGElement> { }
+interface TypographySvgProps extends SVGMotionProps<SVGSVGElement> { }
 
-function TypographySvg({ className }: VoiceToneSvgProps) {
+function TypographySvg({ className }: TypographySvgProps) {
   return (
     <motion.svg
       style={{
