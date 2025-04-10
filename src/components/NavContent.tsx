@@ -2,6 +2,7 @@ import { Color } from "./Color";
 import { Iconography } from "./Iconography";
 import { Imagery } from "./Imagery";
 import { Logo } from "./Logo";
+import { Motion } from "./Motion";
 import { Strategy } from "./Strategy";
 import { Typography } from "./Typography";
 import { VoiceTone } from "./VoiceTone";
@@ -16,6 +17,7 @@ export function NavContent() {
       <Iconography />
       <Color />
       <Imagery />
+      <Motion />
     </nav>
   )
 }
