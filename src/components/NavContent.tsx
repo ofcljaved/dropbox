@@ -1,5 +1,6 @@
 import { Logo } from "./Logo";
 import { Strategy } from "./Strategy";
+import { Typography } from "./Typography";
 import { VoiceTone } from "./VoiceTone";
 
 export function NavContent() {
@@ -8,6 +9,7 @@ export function NavContent() {
       <Strategy />
       <VoiceTone />
       <Logo />
+      <Typography />
     </nav>
   )
 }
