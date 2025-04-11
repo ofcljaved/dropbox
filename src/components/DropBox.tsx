@@ -65,7 +65,7 @@ export function DropBox() {
           height: pastHalf ? width : undefined,
         }}
         transition={{ duration: 0.6, ease: [0.5, 0, 0.2, 1] }}
-        className="relative border text-(--dropbox-color) flex-none bg-(--dropbox-bg)"
+        className="relative border border-transparent text-(--dropbox-color) flex-none bg-(--dropbox-bg)"
       >
         <div
           style={{ width: "min(500px, min(100vw, 100vh) - 64px)" }}

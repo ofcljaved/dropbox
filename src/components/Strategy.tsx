@@ -37,8 +37,8 @@ function StraightSvg() {
   return (
     <div className="absolute w-[calc(100%_-_20px)] h-[calc(100%_-_16px)]" >
       <div className="w-full h-[calc(200%_-_8px)] absolute top-[calc(4px_-_50%)]" >
-        <motion.svg className="w-full h-full fill-none stroke-1 stroke-current" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <motion.path className="opacity-(--opacity)" d="M 0 25 Q 31.25 32.8125, 62.5 40.625 Q 93.75 48.4375, 100 50 C 70 57.5, 80 55, 50 62.5 C 20 70, 30 67.5, 0 75" />
+        <motion.svg className="w-full h-full fill-none stroke-2 stroke-current" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <motion.path style={{ vectorEffect: "non-scaling-stroke" }} className="opacity-(--opacity)" d="M 0 25 Q 31.25 32.8125, 62.5 40.625 Q 93.75 48.4375, 100 50 C 70 57.5, 80 55, 50 62.5 C 20 70, 30 67.5, 0 75" />
         </motion.svg>
       </div>
     </div>
