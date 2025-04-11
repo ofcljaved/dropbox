@@ -48,7 +48,7 @@ function MotionSvg() {
   return (
     <div className="absolute w-[calc(100%_-_28px)] h-[calc(100%_-_16px)]" >
       <div className="w-full h-[calc(200%_-_7.5px)] absolute top-[calc(4px_-_50%)]" >
-        <motion.svg className="w-full h-full fill-none stroke-2 stroke-current" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <motion.svg className="w-full h-full fill-none stroke-1 stroke-current" viewBox="0 0 100 100" preserveAspectRatio="none">
           <path d="M 0,75 C 30,75 60,25 100,25" style={{ vectorEffect: "non-scaling-stroke" }}>
             <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M 0,75 C 65,75 35,25 100,25" begin="tilemotion.mouseover"></animate>
             <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M 0,75 C 30,75 60,25 100,25" begin="tilemotion.mouseout"></animate>
