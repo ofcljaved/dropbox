@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  * {
+    scrollbar-width: none;
+  }
+}
+
 @theme {
   --breakpoint-lg: 991px;
   --dropbox-color: #0061fe;
