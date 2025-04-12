@@ -1,15 +1,18 @@
 import { Link } from "./LinkWrapper"
 import { cn } from "../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
+import { usePosition } from "../hooks/usePosition";
 
 export function Strategy() {
+  const transform = usePosition();
   return (
-    <div
+    <motion.div
       style={{
         height: "calc(50% + var(--dropbox-btn-size) / 2 - var(--nav-tile-gap))",
         left: "var(--nav-tile-gap)",
         top: "var(--nav-tile-gap)",
-        width: "calc(20% - var(--nav-tile-gap) * 2)"
+        width: "calc(20% - var(--nav-tile-gap) * 2)",
+        transform: transform,
       }}
     >
       <Link
@@ -29,7 +32,7 @@ export function Strategy() {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 
