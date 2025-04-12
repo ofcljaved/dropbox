@@ -5,10 +5,10 @@ import { useState } from "react";
 
 export function Logo() {
   const hover = useMotionValue(0);
-  const [value, setValue] = useState(!!hover.get());
+  const [isHovered, setIsHovered] = useState(false);
 
   useMotionValueEvent(hover, 'change', (curr) => {
-    setValue(!!curr);
+    setIsHovered(!!curr);
   })
   return (
     <div
@@ -31,8 +31,19 @@ export function Logo() {
       >
         <div className="flex flex-1 flex-col justify-end relative items-stretch" >
           <div className="w-full max-w-full h-[min(100%,35vh)] absolute bottom-0 right-0]">
-            {!value && <LottieSvg />}
-            {value && <LottieSvg animate={true} fill="transparent" className="stroke-white steoke-[5px]" />}
+            <LottieSvg
+              type="initial"
+              key={1}
+              isHovered={isHovered}
+              fill="#055463"
+            />
+            <LottieSvg
+              type="hover"
+              key={2}
+              isHovered={isHovered}
+              className="stroke-white stroke-[5px] group-hover:opacity-100"
+              style={{ transition: "opacity 0.35s ease" }}
+            />
           </div>
         </div>
       </Link>
