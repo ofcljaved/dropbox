@@ -1,19 +1,25 @@
 import { Link } from "./LinkWrapper"
 import { cn } from "../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
+import { usePosition } from "../hooks/usePosition";
 
-export function VoiceTone() {
+export function VoiceTone({ index }: { index: number }) {
+  const { transform, animationEnd } = usePosition(index);
   return (
-    <div
+    <motion.div
       style={{
         height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
         left: "20%",
         top: "var(--nav-tile-gap)",
-        width: "calc(30% + var(--dropbox-btn-size) / 2)"
+        width: "calc(30% + var(--dropbox-btn-size) / 2)",
+        transform: transform,
       }}
     >
       <Link
-        className="gap-8 bg-[#fad24b] text-[#684505] fill-[#684505]"
+        className={cn(
+          "gap-8 bg-[#fad24b] text-[#684505] fill-[#684505]",
+          animationEnd && "pointer-events-auto",
+        )}
         title="Voice & Tone"
       >
         <div className="flex flex-1 flex-col justify-end relative max-h-[min(70%,25vh)]" >
@@ -23,7 +29,7 @@ export function VoiceTone() {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

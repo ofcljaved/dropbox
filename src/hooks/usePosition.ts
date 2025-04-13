@@ -1,8 +1,10 @@
 import { useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react"
 import { useLoading } from "../context/loadingContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getInitialOffsets } from "../lib/getOffset";
 
-export function usePosition() {
+export function usePosition(index: number) {
+  const [isEnd, setIsEnd] = useState(false);
   const { scrollYProgress } = useScroll();
   const manualScroll = useMotionValue(0);
   const windowWidth = useMotionValue(window.innerWidth);
@@ -11,6 +13,9 @@ export function usePosition() {
   useMotionValueEvent(scrollYProgress, "change", (curr) => {
     if (loading) return;
     manualScroll.set(curr);
+    if (curr === 1) {
+      setIsEnd(true);
+    }
   });
 
   useEffect(() => {
@@ -24,15 +29,30 @@ export function usePosition() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const initial = getInitialOffsets(index, windowWidth.get());
+
+  const initialX = useMotionValue(initial.x);
+  const initialY = useMotionValue(initial.y);
+
+  useMotionValueEvent(windowWidth, 'change', (curr) => {
+    const { x, y } = getInitialOffsets(index, curr);
+    initialX.set(x);
+    initialY.set(y);
+  });
+
   const scaleValue = useTransform(manualScroll, [0, 1], [2, 1]);
+  const translateXValue = useTransform(manualScroll, [0, 1], [initialX.get(), 0]);
+  const translateYValue = useTransform(manualScroll, [0, 1], [initialY.get(), 0]);
 
-  const translateXValue = useTransform(
-    [manualScroll, windowWidth],
-    ([scroll, width]: number[]) => -width * (1 - scroll)
-  );
-  const translateYValue = useTransform(translateXValue, (x) => x / 2);
+  const transform = useMotionTemplate`scale(${scaleValue}) translate(${translateXValue}px, ${translateYValue}px)`;
+  const intialTransform = useMotionTemplate`scale(2) translate(${initialX.get()}px, ${initialY.get()}px)`;
 
-  const transform = useMotionTemplate`translateX(${translateXValue}px) translateY(${translateYValue}px) scale(${scaleValue})`;
+  useMotionValueEvent(scaleValue, 'change', (curr) => {
+    setIsEnd(curr === 1);
+  });
 
-  return loading ? undefined : transform;
+  return {
+    transform: loading ? intialTransform : transform,
+    animationEnd: isEnd,
+  }
 }

@@ -3,8 +3,8 @@ import { cn } from "../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
 import { usePosition } from "../hooks/usePosition";
 
-export function Strategy() {
-  const transform = usePosition();
+export function Strategy({ index }: { index: number }) {
+  const { transform, animationEnd } = usePosition(index);
   return (
     <motion.div
       style={{
@@ -16,7 +16,10 @@ export function Strategy() {
       }}
     >
       <Link
-        className="gap-8 rounded-tl-lg bg-[#283750] text-[#b4c8e1] fill-[#b4c8e1]"
+        className={cn(
+          "gap-8 rounded-tl-lg bg-[#283750] text-[#b4c8e1] fill-[#b4c8e1]",
+          animationEnd && "pointer-events-auto",
+        )}
         title="Framework"
       >
         <div className="flex flex-1 flex-col justify-end relative" >

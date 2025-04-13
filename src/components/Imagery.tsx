@@ -2,8 +2,10 @@ import { Link } from "./LinkWrapper"
 import { cn } from "../lib/utils"
 import { HTMLMotionProps, SVGMotionProps, motion, useMotionValue, useMotionValueEvent } from "motion/react"
 import { useState } from "react";
+import { usePosition } from "../hooks/usePosition";
 
-export function Imagery() {
+export function Imagery({ index }: { index: number }) {
+  const { transform, animationEnd } = usePosition(index);
   const rotate = useMotionValue(-25);
   const [value, setValue] = useState(rotate.get());
 
@@ -12,12 +14,14 @@ export function Imagery() {
   })
 
   return (
-    <div
+    <motion.div
       style={{
         height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
         right: "20%",
         bottom: "var(--nav-tile-gap)",
-        width: "calc(30% + var(--dropbox-btn-size) / 2)"
+        width: "calc(30% + var(--dropbox-btn-size) / 2)",
+        transformOrigin: "0% 0%",
+        transform: transform,
       }}
     >
       <Link
@@ -27,7 +31,10 @@ export function Imagery() {
         onHoverEnd={() => {
           rotate.set(rotate.get() + 180);
         }}
-        className="gap-8 bg-[#892055] text-[#ffafa5] fill-[#ffafa5]"
+        className={cn(
+          "gap-8 bg-[#892055] text-[#ffafa5] fill-[#ffafa5]",
+          animationEnd && "pointer-events-auto",
+        )}
         title="Imagery"
       >
         <div className="flex flex-1 flex-col justify-end relative items-stretch" >
@@ -42,7 +49,7 @@ export function Imagery() {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

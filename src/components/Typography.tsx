@@ -1,20 +1,26 @@
 import { Link } from "./LinkWrapper"
 import { cn } from "../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
+import { usePosition } from "../hooks/usePosition";
 
-export function Typography() {
+export function Typography({ index }: { index: number }) {
+  const { transform, animationEnd } = usePosition(index);
   return (
-    <div
+    <motion.div
       style={{
         height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
         right: "var(--nav-tile-gap)",
         top: "var(--nav-tile-gap)",
         width: "calc(20% - var(--nav-tile-gap) * 2)",
         transformOrigin: "0 100%",
+        transform: transform,
       }}
     >
       <Link
-        className="rounded-tr-lg gap-8 bg-[#fa551e] text-[#4e0119] fill-[#4e0119]"
+        className={cn(
+          "rounded-tr-lg gap-8 bg-[#fa551e] text-[#4e0119] fill-[#4e0119]",
+          animationEnd && "pointer-events-auto",
+        )}
         title="Typography"
       >
         <div id="tiletypography" className="absolute inset-0 z-[9999] flex" />
@@ -26,7 +32,7 @@ export function Typography() {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

@@ -30,7 +30,7 @@ export function Link({ title, children, className, ...props }: LinkProps) {
       variants={variant}
       whileHover={"hover"}
       className={cn(
-        "group rounded-none flex-col justify-between items-stretch w-full h-full p-[23px] no-underline flex overflow-hidden *:pointer-events-auto",
+        "group rounded-none flex-col justify-between items-stretch w-full h-full p-[23px] no-underline flex overflow-hidden pointer-events-none *:pointer-events-none",
         className
       )}
       {...props}

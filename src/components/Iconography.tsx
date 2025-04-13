@@ -1,20 +1,26 @@
 import { Link } from "./LinkWrapper"
 import { cn } from "../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
+import { usePosition } from "../hooks/usePosition";
 
-export function Iconography() {
+export function Iconography({ index }: { index: number }) {
+  const { transform, animationEnd } = usePosition(index);
   return (
-    <div
+    <motion.div
       style={{
         height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
         left: "var(--nav-tile-gap)",
         bottom: "var(--nav-tile-gap)",
         width: "calc(20% - var(--nav-tile-gap) * 2)",
         transformOrigin: "100% 0%",
+        transform: transform,
       }}
     >
       <Link
-        className="rounded-bl-lg gap-8 bg-[#b4dc19] text-[#175641] fill-[#175641]"
+        className={cn(
+          "rounded-bl-lg gap-8 bg-[#b4dc19] text-[#175641] fill-[#175641]",
+          animationEnd && "pointer-events-auto",
+        )}
         title="Iconography"
       >
         <div id="tileiconography" className="absolute inset-0 z-[9999] flex" />
@@ -26,7 +32,7 @@ export function Iconography() {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

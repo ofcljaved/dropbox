@@ -28,10 +28,10 @@ export function DropBox() {
   useMotionValueEvent(scrollYProgress, "change", (curr) => {
     if (loading) return;
     manualScroll.set(curr);
-    setPastHalf(curr >= 0.5);
+    setPastHalf(curr >= 0.3);
   });
 
-  const width = useTransform(manualScroll, [0.5, 0.85], [middleWidth, endWidth], { ease: cubicBezier(0.3, 0, 0.2, 1) });
+  const width = useTransform(manualScroll, [0.3, 1], [middleWidth, endWidth]);
 
   const variants = {
     initial: {

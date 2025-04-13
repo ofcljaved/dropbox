@@ -1,20 +1,26 @@
 import { Link } from "./LinkWrapper"
 import { cn } from "../lib/utils"
-import { SVGMotionProps } from "motion/react"
+import { SVGMotionProps, motion } from "motion/react"
+import { usePosition } from "../hooks/usePosition";
 
-export function Color() {
+export function Color({ index }: { index: number }) {
+  const { transform, animationEnd } = usePosition(index);
   return (
-    <div
+    <motion.div
       style={{
         height: "calc(50% + var(--dropbox-btn-size) / 2 - var(--nav-tile-gap))",
         left: "20%",
         bottom: "var(--nav-tile-gap)",
         width: "calc(30% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap))",
         transformOrigin: "100% 0%",
+        transform: transform,
       }}
     >
       <Link
-        className="gap-8 bg-[#ff8c19] text-[#6d2e09] fill-[#6d2e09]"
+        className={cn(
+          "gap-8 bg-[#ff8c19] text-[#6d2e09] fill-[#6d2e09]",
+          animationEnd && "pointer-events-auto",
+        )}
         title="Color"
       >
         {/*<div id="tileiconography" className="absolute inset-0 z-[9999] flex" />*/}
@@ -33,7 +39,7 @@ export function Color() {
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 
