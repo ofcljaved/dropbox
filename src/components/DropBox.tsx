@@ -1,4 +1,4 @@
-import { useScroll, motion, useMotionValueEvent, useMotionValue, useTransform, cubicBezier } from "motion/react"
+import { useScroll, motion, useMotionValueEvent, useMotionValue, useTransform } from "motion/react"
 import { useState } from "react";
 import ScrollChevron from "./ScrollChevron";
 import { DropBoxText } from "./DropBoxText.tsx";
