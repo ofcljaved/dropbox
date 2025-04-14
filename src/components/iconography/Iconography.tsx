@@ -1,38 +1,19 @@
-import { Link } from "./LinkWrapper"
-import { cn } from "../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
-import { usePosition } from "../hooks/usePosition";
+import { cn } from "../../lib/utils";
+import { IconographyWrapper } from "./IconographyWrapper";
 
 export function Iconography({ index }: { index: number }) {
-  const { transform, animationEnd } = usePosition(index);
   return (
-    <motion.div
-      style={{
-        height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
-        left: "var(--nav-tile-gap)",
-        bottom: "var(--nav-tile-gap)",
-        width: "calc(20% - var(--nav-tile-gap) * 2)",
-        transformOrigin: "100% 0%",
-        transform: transform,
-      }}
-    >
-      <Link
-        className={cn(
-          "rounded-bl-lg gap-8 bg-[#b4dc19] text-[#175641] fill-[#175641]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Iconography"
-      >
-        <div id="tileiconography" className="absolute inset-0 z-[9999] flex" />
-        <div className="flex flex-1 flex-col justify-end relative items-stretch" >
-          <div className="absolute flex bottom-0 w-full max-w-full h-full max-h-[min(100%,15vh)] justify-start items-stretch">
-            <div className="h-full">
-              <IconographySvg className="" />
-            </div>
+    <IconographyWrapper index={index}>
+      <div id="tileiconography" className="absolute inset-0 z-[9999] flex" />
+      <div className="flex flex-1 flex-col justify-end relative items-stretch" >
+        <div className="absolute flex bottom-0 w-full max-w-full h-full max-h-[min(100%,15vh)] justify-start items-stretch">
+          <div className="h-full">
+            <IconographySvg className="" />
           </div>
         </div>
-      </Link>
-    </motion.div>
+      </div>
+    </IconographyWrapper>
   )
 }
 

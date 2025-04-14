@@ -1,5 +1,5 @@
 import { motion, useMotionValueEvent, useScroll } from "motion/react"
-import { useLoading } from "../context/loadingContext";
+import { useLoading } from "../../context/loadingContext";
 import { useState } from "react";
 
 export function DropBoxText({ scrollDirection }: { scrollDirection: string }) {

@@ -1,11 +1,11 @@
-import { Color } from "./Color";
-import { Iconography } from "./Iconography";
-import { Imagery } from "./Imagery";
-import { Logo } from "./Logo";
-import { Motion } from "./Motion";
-import { Strategy } from "./Strategy";
-import { Typography } from "./Typography";
-import { VoiceTone } from "./VoiceTone";
+import { Color } from "./color/Color";
+import { Iconography } from "./iconography/Iconography";
+import { Imagery } from "./imagery/Imagery";
+import { Logo } from "./logo/Logo";
+import { Motion } from "./motion/Motion";
+import { Strategy } from "./strategy/Strategy";
+import { Typography } from "./typography/Typography";
+import { VoiceTone } from "./voicetone/VoiceTone";
 
 export function NavContent() {
   return (

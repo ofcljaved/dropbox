@@ -1,35 +1,17 @@
-import { Link } from "./LinkWrapper"
-import { cn } from "../lib/utils"
+import { cn } from "../../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
-import { usePosition } from "../hooks/usePosition";
+import { VoiceToneWrapper } from "./VoiceToneWrapper";
 
 export function VoiceTone({ index }: { index: number }) {
-  const { transform, animationEnd } = usePosition(index);
   return (
-    <motion.div
-      style={{
-        height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
-        left: "20%",
-        top: "var(--nav-tile-gap)",
-        width: "calc(30% + var(--dropbox-btn-size) / 2)",
-        transform: transform,
-      }}
-    >
-      <Link
-        className={cn(
-          "gap-8 bg-[#fad24b] text-[#684505] fill-[#684505]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Voice & Tone"
-      >
-        <div className="flex flex-1 flex-col justify-end relative max-h-[min(70%,25vh)]" >
-          <div>
-            <VoiceToneSvg className="top-0 left-0 group-hover:translate-x-[40%]" />
-            <VoiceToneSvg className="right-0 bottom-0 rotate-z-180 group-hover:translate-x-[-40%]" />
-          </div>
+    <VoiceToneWrapper index={index}>
+      <div className="flex flex-1 flex-col justify-end relative max-h-[min(70%,25vh)]" >
+        <div>
+          <VoiceToneSvg className="top-0 left-0 group-hover:translate-x-[40%]" />
+          <VoiceToneSvg className="right-0 bottom-0 rotate-z-180 group-hover:translate-x-[-40%]" />
         </div>
-      </Link>
-    </motion.div>
+      </div>
+    </VoiceToneWrapper>
   )
 }
 

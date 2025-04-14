@@ -1,6 +1,6 @@
 import { HTMLAttributes, useEffect, useRef } from "react"
 import lottie, { AnimationItem } from "lottie-web"
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 interface LottieSvgProps extends HTMLAttributes<HTMLDivElement> {
   fill?: '#055463' | '#1a1918';

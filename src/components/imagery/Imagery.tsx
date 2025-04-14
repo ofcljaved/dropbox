@@ -1,55 +1,25 @@
-import { Link } from "./LinkWrapper"
-import { cn } from "../lib/utils"
-import { HTMLMotionProps, SVGMotionProps, motion, useMotionValue, useMotionValueEvent } from "motion/react"
+import { HTMLMotionProps, SVGMotionProps, motion, } from "motion/react"
 import { useState } from "react";
-import { usePosition } from "../hooks/usePosition";
+import { cn } from "../../lib/utils";
+import { ImageryWrapper } from "./ImageryWrapper";
 
 export function Imagery({ index }: { index: number }) {
-  const { transform, animationEnd } = usePosition(index);
-  const rotate = useMotionValue(-25);
-  const [value, setValue] = useState(rotate.get());
-
-  useMotionValueEvent(rotate, 'change', (curr) => {
-    setValue(curr);
-  })
+  const [value, setValue] = useState(-25);
 
   return (
-    <motion.div
-      style={{
-        height: "calc(50% - var(--dropbox-btn-size) / 2 - var(--nav-tile-gap) * 2)",
-        right: "20%",
-        bottom: "var(--nav-tile-gap)",
-        width: "calc(30% + var(--dropbox-btn-size) / 2)",
-        transformOrigin: "0% 0%",
-        transform: transform,
-      }}
-    >
-      <Link
-        onHoverStart={() => {
-          rotate.set(rotate.get() + 180);
-        }}
-        onHoverEnd={() => {
-          rotate.set(rotate.get() + 180);
-        }}
-        className={cn(
-          "gap-8 bg-[#892055] text-[#ffafa5] fill-[#ffafa5]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Imagery"
-      >
-        <div className="flex flex-1 flex-col justify-end relative items-stretch" >
-          <div className="aspect-[5/4] w-full h-full max-w-full max-h-[min(100%,20vh)] absolute bottom-0 right-0">
-            <div className="aspect-[5/4] max-h-full relative mt-auto ml-auto">
-              <ImagerySvg
-                className=""
-                value={value}
-              />
-              <div className="z-[2] absolute inset-0 border-2 border-white opacity-0 group-hover:opacity-100" />
-            </div>
+    <ImageryWrapper index={index} onChange={setValue}>
+      <div className="flex flex-1 flex-col justify-end relative items-stretch" >
+        <div className="aspect-[5/4] w-full h-full max-w-full max-h-[min(100%,20vh)] absolute bottom-0 right-0">
+          <div className="aspect-[5/4] max-h-full relative mt-auto ml-auto">
+            <ImagerySvg
+              className=""
+              value={value}
+            />
+            <div className="z-[2] absolute inset-0 border-2 border-white opacity-0 group-hover:opacity-100" />
           </div>
         </div>
-      </Link>
-    </motion.div>
+      </div>
+    </ImageryWrapper>
   )
 }
 

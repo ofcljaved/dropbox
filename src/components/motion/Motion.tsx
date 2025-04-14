@@ -1,52 +1,33 @@
-import { Link } from "./LinkWrapper"
-import { cn } from "../lib/utils"
+import { cn } from "../../lib/utils"
 import { SVGMotionProps, motion, HTMLMotionProps } from "motion/react"
-import { usePosition } from "../hooks/usePosition";
+import { MotionWrapper } from "./MotionWrapper";
 
 export function Motion({ index }: { index: number }) {
-  const { transform, animationEnd } = usePosition(index);
   return (
-    <motion.div
-      style={{
-        height: "calc(50% + var(--dropbox-btn-size) / 2 - var(--nav-tile-gap))",
-        right: "var(--nav-tile-gap)",
-        bottom: "var(--nav-tile-gap)",
-        width: "calc(20% - var(--nav-tile-gap) * 2)",
-        transformOrigin: "0% 0%",
-        transform: transform,
-      }}
-    >
-      <Link
-        className={cn(
-          "gap-4 rounded-br-lg bg-[#c8aff0] text-[#682760] fill-[#682760]",
-          animationEnd && "pointer-events-auto *:pointer-events-auto",
-        )}
-        title="Motion"
-      >
-        <div id="tilemotion" className="absolute inset-0 z-[9999] flex" />
-        <div className="flex-1 flex-col relative px-3.5 py-2">
-          <div>
-            <Tangent
-              className={cn(
-                "bottom-[9px] left-[10px] w-[25%]",
-                "group-hover:w-[50%]"
-              )}
-            />
-            <Tangent
-              className={cn(
-                "top-[9px] right-[10px] w-[30%]",
-                "group-hover:w-[50%]"
-              )}
-            />
-            <NodeSvg className="left-0 bottom-0" />
-            <NodeSvg className="left-[25%] bottom-0 group-hover:left-[50%]" />
-            <NodeSvg className="top-0 right-[30%] group-hover:right-[50%]" />
-            <NodeSvg className="top-0 right-0" />
-          </div>
-          <MotionSvg />
+    <MotionWrapper index={index}>
+      <div id="tilemotion" className="absolute inset-0 z-[9999] flex" />
+      <div className="flex-1 flex-col relative px-3.5 py-2">
+        <div>
+          <Tangent
+            className={cn(
+              "bottom-[9px] left-[10px] w-[25%]",
+              "group-hover:w-[50%]"
+            )}
+          />
+          <Tangent
+            className={cn(
+              "top-[9px] right-[10px] w-[30%]",
+              "group-hover:w-[50%]"
+            )}
+          />
+          <NodeSvg className="left-0 bottom-0" />
+          <NodeSvg className="left-[25%] bottom-0 group-hover:left-[50%]" />
+          <NodeSvg className="top-0 right-[30%] group-hover:right-[50%]" />
+          <NodeSvg className="top-0 right-0" />
         </div>
-      </Link>
-    </motion.div>
+        <MotionSvg />
+      </div>
+    </MotionWrapper>
   )
 }
 

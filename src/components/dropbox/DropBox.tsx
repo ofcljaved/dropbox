@@ -3,7 +3,7 @@ import { useState } from "react";
 import ScrollChevron from "./ScrollChevron";
 import { DropBoxText } from "./DropBoxText.tsx";
 import DropBoxSvg from "./DropBoxSvg.tsx";
-import { useLoading } from "../context/loadingContext.tsx";
+import { useLoading } from "../../context/loadingContext.tsx";
 
 const initialWidth = "calc(-2px + min(800px, -64px + min(100vw, 100vh)))";
 const middleWidth = "calc(-2px + min(502px, -64px + min(100vw, 100vh)))";

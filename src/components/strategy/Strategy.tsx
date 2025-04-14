@@ -1,41 +1,23 @@
-import { Link } from "./LinkWrapper"
-import { cn } from "../lib/utils"
+import { cn } from "../../lib/utils"
 import { SVGMotionProps, motion } from "motion/react"
-import { usePosition } from "../hooks/usePosition";
+import { StrategyWrapper } from "./StrategyWrapper";
 
 export function Strategy({ index }: { index: number }) {
-  const { transform, animationEnd } = usePosition(index);
   return (
-    <motion.div
-      style={{
-        height: "calc(50% + var(--dropbox-btn-size) / 2 - var(--nav-tile-gap))",
-        left: "var(--nav-tile-gap)",
-        top: "var(--nav-tile-gap)",
-        width: "calc(20% - var(--nav-tile-gap) * 2)",
-        transform: transform,
-      }}
-    >
-      <Link
-        className={cn(
-          "gap-8 rounded-tl-lg bg-[#283750] text-[#b4c8e1] fill-[#b4c8e1]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Framework"
-      >
-        <div className="flex flex-1 flex-col justify-end relative" >
-          <div className="aspect-square max-w-full max-h-full px-2 py-2.5 absolute left-0 right-0" >
-            <div>
-              <NodeSvg className="left-0 top-0" />
-              <NodeSvg className="right-0 top-[calc(50%_-_10px)]" />
-              <NodeSvg className="left-0 bottom-0" />
-            </div>
-            <StraightSvg />
-            <Sketch1 />
-            <Sketch2 />
+    <StrategyWrapper index={index}>
+      <div className="flex flex-1 flex-col justify-end relative" >
+        <div className="aspect-square max-w-full max-h-full px-2 py-2.5 absolute left-0 right-0" >
+          <div>
+            <NodeSvg className="left-0 top-0" />
+            <NodeSvg className="right-0 top-[calc(50%_-_10px)]" />
+            <NodeSvg className="left-0 bottom-0" />
           </div>
+          <StraightSvg />
+          <Sketch1 />
+          <Sketch2 />
         </div>
-      </Link>
-    </motion.div>
+      </div>
+    </StrategyWrapper>
   )
 }
 

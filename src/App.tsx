@@ -1,7 +1,7 @@
 import { useMotionValueEvent, useMotionValue, animate } from "motion/react"
 import { useEffect } from "react";
 import { useLoading } from "./context/loadingContext";
-import { DropBox } from "./components/DropBox";
+import { DropBox } from "./components/dropbox/DropBox";
 import { Nav } from "./components/Nav";
 
 function App() {
