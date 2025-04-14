@@ -9,7 +9,7 @@ export function DropBoxText({ scrollDirection }: { scrollDirection: string }) {
 
   useMotionValueEvent(scrollYProgress, "change", (curr) => {
     if (loading) return;
-    setHideText(curr > 0.3);
+    setHideText(curr > 0.35);
   });
 
   const textVariants = {

@@ -19,7 +19,7 @@ export function Motion({ index }: { index: number }) {
       <Link
         className={cn(
           "gap-4 rounded-br-lg bg-[#c8aff0] text-[#682760] fill-[#682760]",
-          animationEnd && "pointer-events-auto",
+          animationEnd && "pointer-events-auto *:pointer-events-auto",
         )}
         title="Motion"
       >
