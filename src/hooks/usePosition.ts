@@ -1,10 +1,9 @@
 import { useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react"
 import { useLoading } from "../context/loadingContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getInitialOffsets } from "../lib/getOffset";
 
 export function usePosition(index: number) {
-  const [isEnd, setIsEnd] = useState(false);
   const { scrollYProgress } = useScroll();
   const manualScroll = useMotionValue(0);
   const windowWidth = useMotionValue(window.innerWidth);
@@ -13,9 +12,6 @@ export function usePosition(index: number) {
   useMotionValueEvent(scrollYProgress, "change", (curr) => {
     if (loading) return;
     manualScroll.set(curr);
-    if (curr === 1) {
-      setIsEnd(true);
-    }
   });
 
   useEffect(() => {
@@ -47,12 +43,7 @@ export function usePosition(index: number) {
   const transform = useMotionTemplate`scale(${scaleValue}) translate(${translateXValue}px, ${translateYValue}px)`;
   const intialTransform = useMotionTemplate`scale(2) translate(${initialX.get()}px, ${initialY.get()}px)`;
 
-  useMotionValueEvent(scaleValue, 'change', (curr) => {
-    setIsEnd(curr === 1);
-  });
 
-  return {
-    transform: loading ? intialTransform : transform,
-    animationEnd: isEnd,
-  }
+  return loading ? intialTransform : transform
+
 }

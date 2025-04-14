@@ -4,7 +4,22 @@ import { Link } from "../LinkWrapper";
 import { cn } from "../../lib/utils";
 
 export function IconographyWrapper({ index, children }: { index: number, children: React.ReactNode }) {
-  const { transform, animationEnd } = usePosition(index);
+  return (
+    <RawIconographyWrapper index={index}>
+      <Link
+        className={cn(
+          "rounded-bl-lg gap-8 bg-[#b4dc19] text-[#175641] fill-[#175641]",
+        )}
+        title="Iconography"
+      >
+        {children}
+      </Link>
+    </RawIconographyWrapper>
+  )
+}
+
+export function RawIconographyWrapper({ index, children }: { index: number, children: React.ReactNode }) {
+  const transform = usePosition(index);
   return (
     <motion.div
       style={{
@@ -16,15 +31,7 @@ export function IconographyWrapper({ index, children }: { index: number, childre
         transform: transform,
       }}
     >
-      <Link
-        className={cn(
-          "rounded-bl-lg gap-8 bg-[#b4dc19] text-[#175641] fill-[#175641]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Iconography"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

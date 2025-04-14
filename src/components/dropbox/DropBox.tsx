@@ -51,7 +51,7 @@ export function DropBox() {
 
   return (
     <div
-      className="flex justify-center items-center pointer-events-none fixed size-(--dropbox-btn-size) left-(--dropbox-left) bottom-(--dropbox-bottom) transform-(--dropbox-transform)"
+      className="flex justify-center items-center pointer-events-none fixed z-[101] size-(--dropbox-btn-size) left-(--dropbox-left) bottom-(--dropbox-bottom) transform-(--dropbox-transform)"
     >
       <motion.div
         initial={variants.initial}

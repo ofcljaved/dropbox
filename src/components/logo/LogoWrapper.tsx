@@ -8,12 +8,37 @@ export function LogoWrapper({ index, children, onChange }: {
   children: React.ReactNode
   onChange?: (value: boolean) => void
 }) {
-  const { transform, animationEnd } = usePosition(index);
   const hover = useMotionValue(0);
 
   useMotionValueEvent(hover, 'change', (curr) => {
     onChange && onChange(!!curr);
   })
+  return (
+    <RawLogoWrapper index={index}>
+      <Link
+        onHoverStart={() => {
+          hover.set(1);
+        }}
+        onHoverEnd={() => {
+          hover.set(0);
+        }}
+        className={cn(
+          "gap-8 bg-[#3dd3ee] text-[#055463] fill-[#055463]",
+        )}
+        title="Logo"
+      >
+        {children}
+      </Link>
+    </RawLogoWrapper>
+  )
+}
+
+export function RawLogoWrapper({ index, children }: {
+  index: number
+  children: React.ReactNode
+}) {
+  const transform = usePosition(index);
+
   return (
     <motion.div
       style={{
@@ -25,21 +50,7 @@ export function LogoWrapper({ index, children, onChange }: {
         transform: transform,
       }}
     >
-      <Link
-        onHoverStart={() => {
-          hover.set(1);
-        }}
-        onHoverEnd={() => {
-          hover.set(0);
-        }}
-        className={cn(
-          "gap-8 bg-[#3dd3ee] text-[#055463] fill-[#055463]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Logo"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

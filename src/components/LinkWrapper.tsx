@@ -1,5 +1,6 @@
 import { motion, HTMLMotionProps } from "motion/react";
 import { cn } from "../lib/utils";
+import { useAnimationEnd } from "../hooks/useAnimationEnd";
 
 interface LinkProps extends HTMLMotionProps<"a"> {
   title: string;
@@ -7,6 +8,7 @@ interface LinkProps extends HTMLMotionProps<"a"> {
 }
 
 export function Link({ title, children, className, ...props }: LinkProps) {
+  const animationEnd = useAnimationEnd();
 
   const variant = {
     initial: {
@@ -31,7 +33,8 @@ export function Link({ title, children, className, ...props }: LinkProps) {
       whileHover={"hover"}
       className={cn(
         "group rounded-none flex-col justify-between items-stretch w-full h-full p-[23px] no-underline flex overflow-hidden pointer-events-none *:pointer-events-none",
-        className
+        className,
+        animationEnd && "pointer-events-auto *:pointer-events-auto",
       )}
       {...props}
     >

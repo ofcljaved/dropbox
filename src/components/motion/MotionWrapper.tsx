@@ -4,7 +4,22 @@ import { motion } from "motion/react"
 import { usePosition } from "../../hooks/usePosition";
 
 export function MotionWrapper({ index, children }: { index: number, children: React.ReactNode }) {
-  const { transform, animationEnd } = usePosition(index);
+  return (
+    <RawMotionWrapper index={index}>
+      <Link
+        className={cn(
+          "gap-4 rounded-br-lg bg-[#c8aff0] text-[#682760] fill-[#682760]",
+        )}
+        title="Motion"
+      >
+        {children}
+      </Link>
+    </RawMotionWrapper>
+  )
+}
+
+export function RawMotionWrapper({ index, children }: { index: number, children: React.ReactNode }) {
+  const transform = usePosition(index);
   return (
     <motion.div
       style={{
@@ -16,15 +31,7 @@ export function MotionWrapper({ index, children }: { index: number, children: Re
         transform: transform,
       }}
     >
-      <Link
-        className={cn(
-          "gap-4 rounded-br-lg bg-[#c8aff0] text-[#682760] fill-[#682760]",
-          animationEnd && "pointer-events-auto *:pointer-events-auto",
-        )}
-        title="Motion"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

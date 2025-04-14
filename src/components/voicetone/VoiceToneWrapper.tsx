@@ -4,7 +4,22 @@ import { motion } from "motion/react"
 import { usePosition } from "../../hooks/usePosition";
 
 export function VoiceToneWrapper({ index, children }: { index: number, children: React.ReactNode }) {
-  const { transform, animationEnd } = usePosition(index);
+  return (
+    <RawVoiceToneWrapper index={index}>
+      <Link
+        className={cn(
+          "gap-8 bg-[#fad24b] text-[#684505] fill-[#684505]",
+        )}
+        title="Voice & Tone"
+      >
+        {children}
+      </Link>
+    </RawVoiceToneWrapper>
+  )
+}
+
+export function RawVoiceToneWrapper({ index, children }: { index: number, children: React.ReactNode }) {
+  const transform = usePosition(index);
   return (
     <motion.div
       style={{
@@ -15,15 +30,7 @@ export function VoiceToneWrapper({ index, children }: { index: number, children:
         transform: transform,
       }}
     >
-      <Link
-        className={cn(
-          "gap-8 bg-[#fad24b] text-[#684505] fill-[#684505]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Voice & Tone"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

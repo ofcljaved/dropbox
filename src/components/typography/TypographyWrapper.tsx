@@ -4,7 +4,22 @@ import { motion } from "motion/react"
 import { usePosition } from "../../hooks/usePosition";
 
 export function TypographyWrapper({ index, children }: { index: number, children: React.ReactNode }) {
-  const { transform, animationEnd } = usePosition(index);
+  return (
+    <RawTypographyWrapper index={index}>
+      <Link
+        className={cn(
+          "rounded-tr-lg gap-8 bg-[#fa551e] text-[#4e0119] fill-[#4e0119]",
+        )}
+        title="Typography"
+      >
+        {children}
+      </Link>
+    </RawTypographyWrapper>
+  )
+}
+
+export function RawTypographyWrapper({ index, children }: { index: number, children: React.ReactNode }) {
+  const transform = usePosition(index);
   return (
     <motion.div
       style={{
@@ -16,15 +31,7 @@ export function TypographyWrapper({ index, children }: { index: number, children
         transform: transform,
       }}
     >
-      <Link
-        className={cn(
-          "rounded-tr-lg gap-8 bg-[#fa551e] text-[#4e0119] fill-[#4e0119]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Typography"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

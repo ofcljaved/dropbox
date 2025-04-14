@@ -4,7 +4,22 @@ import { Link } from "../LinkWrapper";
 import { cn } from "../../lib/utils";
 
 export function ColorWrapper({ index, children }: { index: number, children: React.ReactNode }) {
-  const { transform, animationEnd } = usePosition(index);
+  return (
+    <RawColorWrapper index={index}>
+      <Link
+        className={cn(
+          "gap-8 bg-[#ff8c19] text-[#6d2e09] fill-[#6d2e09]",
+        )}
+        title="Color"
+      >
+        {children}
+      </Link>
+    </RawColorWrapper>
+  )
+}
+
+export function RawColorWrapper({ index, children }: { index: number, children: React.ReactNode }) {
+  const transform = usePosition(index);
   return (
     <motion.div
       style={{
@@ -16,15 +31,7 @@ export function ColorWrapper({ index, children }: { index: number, children: Rea
         transform: transform,
       }}
     >
-      <Link
-        className={cn(
-          "gap-8 bg-[#ff8c19] text-[#6d2e09] fill-[#6d2e09]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Color"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

@@ -8,12 +8,38 @@ export function ImageryWrapper({ index, children, onChange }: {
   children: React.ReactNode,
   onChange?: (value: number) => void
 }) {
-  const { transform, animationEnd } = usePosition(index);
   const rotate = useMotionValue(-25);
 
   useMotionValueEvent(rotate, 'change', (curr) => {
     onChange && onChange(curr);
   })
+
+  return (
+    <RawImageryWrapper index={index}>
+      <Link
+        onHoverStart={() => {
+          rotate.set(rotate.get() + 180);
+        }}
+        onHoverEnd={() => {
+          rotate.set(rotate.get() + 180);
+        }}
+        className={cn(
+          "gap-8 bg-[#892055] text-[#ffafa5] fill-[#ffafa5]",
+        )}
+        title="Imagery"
+      >
+        {children}
+      </Link>
+    </RawImageryWrapper>
+  )
+}
+
+export function RawImageryWrapper({ index, children }: {
+  index: number,
+  children: React.ReactNode,
+}) {
+  const transform = usePosition(index);
+
 
   return (
     <motion.div
@@ -26,21 +52,7 @@ export function ImageryWrapper({ index, children, onChange }: {
         transform: transform,
       }}
     >
-      <Link
-        onHoverStart={() => {
-          rotate.set(rotate.get() + 180);
-        }}
-        onHoverEnd={() => {
-          rotate.set(rotate.get() + 180);
-        }}
-        className={cn(
-          "gap-8 bg-[#892055] text-[#ffafa5] fill-[#ffafa5]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Imagery"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }

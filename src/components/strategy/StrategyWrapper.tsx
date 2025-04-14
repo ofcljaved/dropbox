@@ -4,7 +4,22 @@ import { motion } from "motion/react"
 import { usePosition } from "../../hooks/usePosition";
 
 export function StrategyWrapper({ index, children }: { index: number, children: React.ReactNode }) {
-  const { transform, animationEnd } = usePosition(index);
+  return (
+    <RawStrategyWrapper index={index}>
+      <Link
+        className={cn(
+          "gap-8 rounded-tl-lg bg-[#283750] text-[#b4c8e1] fill-[#b4c8e1]",
+        )}
+        title="Framework"
+      >
+        {children}
+      </Link>
+    </RawStrategyWrapper>
+  )
+}
+
+export function RawStrategyWrapper({ index, children }: { index: number, children: React.ReactNode }) {
+  const transform = usePosition(index);
   return (
     <motion.div
       style={{
@@ -15,15 +30,7 @@ export function StrategyWrapper({ index, children }: { index: number, children: 
         transform: transform,
       }}
     >
-      <Link
-        className={cn(
-          "gap-8 rounded-tl-lg bg-[#283750] text-[#b4c8e1] fill-[#b4c8e1]",
-          animationEnd && "pointer-events-auto",
-        )}
-        title="Framework"
-      >
-        {children}
-      </Link>
+      {children}
     </motion.div>
   )
 }
