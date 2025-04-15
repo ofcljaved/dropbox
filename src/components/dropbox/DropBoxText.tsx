@@ -49,7 +49,7 @@ export function DropBoxText({ scrollDirection }: { scrollDirection: string }) {
         }}
         animate={scrollDirection}
         transition={{ duration: 0.2, ease: [0.2, 0.5, 0.5, 1], delay: 0.1 }}
-        className="text-4xl absolute inset-[0%_0%_auto]"
+        className="text-3xl absolute inset-[0%_0%_auto]"
       >
         From icons to illustration, logos to language, this collection is the foundation for how Dropbox looks, feels, and sounds like Dropbox.
       </motion.h3>

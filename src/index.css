@@ -3,6 +3,13 @@
 @layer base {
   * {
     scrollbar-width: none;
+    font-family: var(--font-db);
+  }
+
+  h3 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    font-weight: 700;
   }
 }
 
@@ -26,4 +33,15 @@
 
     --nav-tile-gap: 5px;
   }
+}
+
+@font-face {
+  font-family: db;
+  font-weight: 400;
+  font-display: swap;
+  src: url('db.ttf') format('ttf'),
+}
+
+@theme {
+  --font-db: 'db', Arial, sans-serif;
 }
