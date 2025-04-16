@@ -1,54 +1,28 @@
-# React + TypeScript + Vite
+# Dropbox Brand Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Implementation of the Dropbox brand landing page using React, motion and tailwindcss.
 
-Currently, two official plugins are available:
+My Work : [https://dropbox.ofcljaved.com/](https://dropbox.ofcljaved.com/)
+Original : [https://brand.dropbox.com/](https://brand.dropbox.com/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Approach
 
-## Expanding the ESLint configuration
+- Start by inspecting the DOM in browser and watching the animations/styles change.
+- Chop down the animations to very small module by deleting the elements and focus on one animtation at a time.
+- Going through [motion docs](https://motion.dev) and using youtube videos to learn motions.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Actual Process
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- First, I managed to found the initial loading animations which is happening by the class change
+- Then I straight went to AI and it didn't help so back to docs
+- The first animation took me more than a day or two and after that It went with flow
+- Main thing is the useScroll hooks and useMotionEvent to create custom animations
+- After that it was just inspecting and implementing the animations
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## My learnings
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- I got very decent grasp of motions
+- Don't hesistate to use inline css, not everything needs to be in tailwind
+- Don't know how good the code quality is, but did modularized repeating code until I exhaust
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
